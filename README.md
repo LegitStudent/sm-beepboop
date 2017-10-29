@@ -1,1 +1,3 @@
-smi-automation-web
+# smi-automation-web
+
+TODO: Write full readme
