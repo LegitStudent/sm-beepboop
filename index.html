@@ -28,18 +28,29 @@
          }(document, 'script', 'facebook-jssdk'));
 
          function getLikesCount() {
-             FB.login(function() {
-                FB.api('/TheGUIDON', 'get', { fields: 'fan_count'}, function(res) {
-                    var fanCount = -1; // -1 means not yet filled out
-                    if (typeof res == 'object') {
-                        fanCount = res.fan_count;
-                    } else {
-                        fanCount = JSON.parse(res).fan_count;
-                    }
-                    
-                    document.querySelector('#test').textContent = fanCount.toString();
-                });
-             });
+             FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    getLikes()
+                }
+                else {
+                    FB.login(function() {
+                        getLikes();
+                    });
+                }
+            });
+         }
+         
+         function getLikes() {
+            FB.api('/TheGUIDON', 'get', { fields: 'fan_count'}, function(res) {
+                var fanCount = -1; // -1 means not yet filled out
+                if (typeof res == 'object') {
+                    fanCount = res.fan_count;
+                } else {
+                    fanCount = JSON.parse(res).fan_count;
+                }
+                
+                document.querySelector('#test').innerText = "The GUIDON Facebook: " + fanCount.toString();
+            });
          }
       </script>
 
