@@ -28,19 +28,28 @@
            fjs.parentNode.insertBefore(js, fjs);
          }(document, 'script', 'facebook-jssdk'));
 
+         var loggedIn = false; // 
+
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                loggedIn = true;    
+            }
+            else {
+                loggedIn = false;
+            }
+        });   
+
+
          function getLikesCount() {
-             FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    getLikes()
-                }
-                else {
-                    FB.login(function() {
-                        getLikes();
-                    });
-                }
-            });
+            if (loggedIn) {
+                getLikes()
+            } else {
+                FB.login(function() {
+                    getLikes();
+                });
+            }
          }
-         
+
          function getLikes() {
              FB.api('', 'post', {
                  batch: [
@@ -79,7 +88,7 @@
             document.querySelector('#out').appendChild(newRow);
          }
       </script>
-      
+
         <div class="container">
             <h1>Social Media Index Tracker</h1>
             <table id="out" class="table table-bordered">
