@@ -48,6 +48,8 @@
                      { method: 'get', relative_url:'VantMag/?fields=fan_count'}
                  ]
              }, function(resArray) {
+                var textToWrite = "";
+
                  var refArray = ["The GUIDON Main", "GUIDON Sports", "Vantage Magazine"];
                     resArray.map(function(res, index) {
                         var fanCount = -1; // -1 means not yet filled out
@@ -62,8 +64,9 @@
                             fanCount = JSON.parse(res.body).fan_count;
                         } */
 
-                        document.querySelector('#test').innerText = name + ": " + fanCount;
+                        textToWrite += name + ": " + fanCount + "\n";
                     })
+                    document.querySelector('#test').innerText = textToWrite;
              })
          }
 
