@@ -55,13 +55,6 @@
                         var name = refArray[index];
                         
                         fanCount = JSON.parse(res.body).fan_count;
-                        
-                        /* 
-                        if (typeof res.body == 'object') {
-                            fanCount = res.fan_count;
-                        } else {
-                            fanCount = JSON.parse(res.body).fan_count;
-                        } */
 
                         addEntry(refArray[index], fanCount);
                     })
@@ -85,19 +78,6 @@
 
             document.querySelector('#out').appendChild(newRow);
          }
-
-         /* function getGUIDONLikes() {
-            FB.api('/TheGUIDON', 'get', { fields: 'fan_count'}, function(res) {
-                var fanCount = -1; // -1 means not yet filled out
-                if (typeof res == 'object') {
-                    fanCount = res.fan_count;
-                } else {
-                    fanCount = JSON.parse(res).fan_count;
-                }
-                
-                document.querySelector('#test').innerText = "The GUIDON Facebook: " + fanCount.toString();
-            });
-         } */
       </script>
       
         <div class="container">
