@@ -37,6 +37,8 @@
             else {
                 loggedIn = false;
             }
+
+            document.querySelector("button").disabled = false;
         });   
 
 
@@ -97,7 +99,7 @@
                     <th>Likes</th>
                 </tr>
             </table>
-            <button onclick="getLikesCount()">Get Likes Count</button>
+            <button disabled onclick="getLikesCount()">Get Likes Count</button>
         </div>
 </body>
 </html>
