@@ -48,8 +48,6 @@
                      { method: 'get', relative_url:'VantMag/?fields=fan_count'}
                  ]
              }, function(resArray) {
-                var textToWrite = "";
-
                  var refArray = ["The GUIDON Main", "GUIDON Sports", "Vantage Magazine"];
                     resArray.map(function(res, index) {
                         var fanCount = -1; // -1 means not yet filled out
@@ -64,10 +62,27 @@
                             fanCount = JSON.parse(res.body).fan_count;
                         } */
 
-                        textToWrite += name + ": " + fanCount + "\n";
+                        addEntry(refArray[index], fanCount);
                     })
-                    document.querySelector('#test').innerText = textToWrite;
              })
+         }
+         
+         function addEntry(pageName, likes) {
+            var newRow = document.createElement("tr");
+            
+            // Create td and Append page name
+            var pageNameCell = document.createElement("td");
+            pageNameCell.innerText = pageName;
+            
+            var likesCountCell = document.createElement("td");
+            pageNameCell.innerText = likes;
+
+            newRow.appendChild(pageNameCell);
+            newRow.appendChild(likesCountCell);
+
+            // Append likes count as td
+
+            document.querySelector('#out').appendChild(newRow);
          }
 
          /* function getGUIDONLikes() {
@@ -84,7 +99,12 @@
          } */
       </script>
 
-    <p id="test"></p>
+    <table id="out">
+        <tr>
+            <th>Page</th>
+            <th>Likes</th>
+        </tr>
+    </table>
     <button onclick="getLikesCount()">Get Likes Count</button>
 </body>
 </html>
