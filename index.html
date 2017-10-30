@@ -41,6 +41,16 @@
          }
          
          function getLikes() {
+             FB.api('', 'post', {
+                 batch: [
+                     { method: 'get', relative_url:'TheGUIDON/?fields=fan_count'},
+                     { method: 'get', relative_url:'TheGUIDONSports/?fields=fan_count'},
+                     { method: 'get', relative_url:'VantMag/?fields=fan_count'}
+                 ]
+             })
+         }
+
+         /* function getGUIDONLikes() {
             FB.api('/TheGUIDON', 'get', { fields: 'fan_count'}, function(res) {
                 var fanCount = -1; // -1 means not yet filled out
                 if (typeof res == 'object') {
@@ -51,7 +61,7 @@
                 
                 document.querySelector('#test').innerText = "The GUIDON Facebook: " + fanCount.toString();
             });
-         }
+         } */
       </script>
 
     <p id="test"></p>
