@@ -53,8 +53,7 @@
                         var fanCount = -1; // -1 means not yet filled out
                         var name = refArray[index];
                         
-                        res.body = JSON.parse(res.body);
-                        fanCount = res.body.fan_count;
+                        fanCount = JSON.parse(res.body).fan_count;
                         
                         /* 
                         if (typeof res.body == 'object') {
@@ -63,7 +62,7 @@
                             fanCount = JSON.parse(res.body).fan_count;
                         } */
 
-                        document.querySelector('#test').innerText = name + ": " + fanCount.toString();
+                        document.querySelector('#test').innerText = name + ": " + fanCount;
                     })
              })
          }
