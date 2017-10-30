@@ -48,17 +48,17 @@
                      { method: 'get', relative_url:'VantMag/?fields=fan_count'}
                  ]
              }, function(resArray) {
-                    var fanCount = -1; // -1 means not yet filled out
-                    resArray.map(function(res) {
+                 var refArray = ["The GUIDON Main", "GUIDON Sports", "Vantage Magazine"];
+                    resArray.map(function(res, index) {
+                        var fanCount = -1; // -1 means not yet filled out
+                        var name = refArray[index];
                         if (typeof res == 'object') {
                             fanCount = res.fan_count;
                         } else {
                             fanCount = JSON.parse(res).fan_count;
                         }
-                        
-                        console.log(res);
 
-                        //document.querySelector('#test').innerText = "The GUIDON Facebook: " + fanCount.toString();
+                        document.querySelector('#test').innerText = "The GUIDON Facebook: " + fanCount.toString();
                     })
              })
          }

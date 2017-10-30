@@ -1,0 +1,5 @@
+{
+    code: int,
+    headers: object Array,
+    body: stringified JSON
+}
