@@ -47,6 +47,19 @@
                      { method: 'get', relative_url:'TheGUIDONSports/?fields=fan_count'},
                      { method: 'get', relative_url:'VantMag/?fields=fan_count'}
                  ]
+             }, function(resArray) {
+                    var fanCount = -1; // -1 means not yet filled out
+                    resArray.map(function(res) {
+                        if (typeof res == 'object') {
+                            fanCount = res.fan_count;
+                        } else {
+                            fanCount = JSON.parse(res).fan_count;
+                        }
+                        
+                        console.log(res);
+
+                        //document.querySelector('#test').innerText = "The GUIDON Facebook: " + fanCount.toString();
+                    })
              })
          }
 
